@@ -1,4 +1,3 @@
-package part3client
 package main
 
 import (
@@ -21,11 +20,10 @@ func main() {
 
 	user := "client-go"
 
-	// LOGIN
 	login := Message{
 		Service: "login",
 		Data: map[string]interface{}{
-			"user": user,
+			"user":      user,
 			"timestamp": time.Now().UnixMilli(),
 		},
 	}
@@ -33,13 +31,12 @@ func main() {
 	resp := recvMsgPack(req)
 	fmt.Println("📥 Login:", resp)
 
-	// PUBLICAR
 	pub := Message{
 		Service: "publish",
 		Data: map[string]interface{}{
-			"user": user,
-			"channel": "geral",
-			"message": "Olá via MessagePack!",
+			"user":      user,
+			"channel":   "geral",
+			"message":   "Olá via MessagePack!",
 			"timestamp": time.Now().UnixMilli(),
 		},
 	}

@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   proxy:
@@ -9,10 +9,10 @@ services:
       - "5558:5558"
 
   server:
-    build: ./part2-server
+    build: ./part3-server
     container_name: server
     volumes:
-      - ./part2-server/data:/app/data
+      - ./data:/data
     depends_on:
       - proxy
     environment:
@@ -20,17 +20,15 @@ services:
       - SUB_ADDRESS=tcp://proxy:5558
 
   client:
-    build: ./part2-client
+    build: ./part3-client
+    container_name: client
     depends_on:
       - server
       - proxy
-    deploy:
-      replicas: 2
 
   bot:
-    build: ./part2-bot
+    build: ./part3-bot
+    container_name: bot
     depends_on:
       - server
       - proxy
-    deploy:
-      replicas: 8

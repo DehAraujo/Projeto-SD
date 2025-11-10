@@ -2,11 +2,10 @@ FROM node:18
 
 WORKDIR /app
 
-# 1. Copia o arquivo principal
-COPY index.js .
+# Copia os arquivos do bot
+COPY package*.json ./
+RUN npm install
 
-# 2. Instala o ZeroMQ
-RUN npm install zeromq
+COPY . .
 
-# 3. Executa o bot
 CMD ["node", "index.js"]

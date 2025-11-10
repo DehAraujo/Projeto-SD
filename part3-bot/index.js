@@ -1,5 +1,5 @@
-const zmq = require("zeromq"); 
-const msgpack = require("msgpack-lite");
+import zmq from "zeromq";
+import msgpack from "msgpack-lite";
 
 async function start() {
   const req = new zmq.Request();
@@ -15,12 +15,18 @@ async function start() {
   while (true) {
     const msg = {
       service: "publish",
-      data: { user, channel: "geral", message: "Mensagem binária 🔥", timestamp: Date.now() },
+      data: {
+        user,
+        channel: "geral",
+        message: "Mensagem binária 🔥",
+        timestamp: Date.now(),
+      },
     };
+
     await req.send(msgpack.encode(msg));
     const [resp] = await req.receive();
     console.log("📤 Resposta:", msgpack.decode(resp));
-    await new Promise(r => setTimeout(r, 3000));
+    await new Promise((r) => setTimeout(r, 3000));
   }
 }
 

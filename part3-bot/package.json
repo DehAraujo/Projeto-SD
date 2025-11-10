@@ -1,6 +1,9 @@
 {
+  "name": "bot",
+  "version": "1.0.0",
+  "type": "module",
   "dependencies": {
-    "zeromq": "^6.0.0",
-    "msgpack-lite": "..." 
+    "zeromq": "^6.0.0-beta.6",
+    "msgpack-lite": "^0.1.26"
   }
 }
