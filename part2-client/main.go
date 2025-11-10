@@ -1,12 +1,10 @@
-package part2client
 package main
 
 import (
 	"encoding/json"
 	"fmt"
-	"time"
 	"math/rand"
-	zmq "github.com/pebbe/zmq4"
+	"time"
 )
 
 type Message struct {
