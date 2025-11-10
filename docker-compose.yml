@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  server:
+    build: ./part1-server
+    container_name: server
+    ports:
+      - "5555:5555"
+
+  client:
+    build: ./part1-client
+    container_name: client
+    depends_on:
+      - server
