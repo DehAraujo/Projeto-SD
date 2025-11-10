@@ -1,5 +1,5 @@
-import zmq from "zeromq";
-import msgpack from "msgpack-lite";
+const zmq = require("zeromq"); 
+const msgpack = require("msgpack-lite");
 
 async function start() {
   const req = new zmq.Request();
