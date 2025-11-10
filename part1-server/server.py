@@ -1,80 +1,117 @@
 import zmq
 import json
-import time
 import os
+from datetime import datetime
 
-DATA_FILE = "data.json"
+# Arquivos de persistência
+USERS_FILE = "users.json"
+CHANNELS_FILE = "channels.json"
 
-def load_data():
-    if not os.path.exists(DATA_FILE):
-        return {"users": [], "channels": []}
-    with open(DATA_FILE, "r") as f:
-        return json.load(f)
+# Garante arquivos de persistência
+for f in [USERS_FILE, CHANNELS_FILE]:
+    if not os.path.exists(f):
+        with open(f, "w") as fp:
+            json.dump([], fp)
 
-def save_data(data):
-    with open(DATA_FILE, "w") as f:
-        json.dump(data, f, indent=2)
+def load_json(filename):
+    with open(filename, "r") as fp:
+        return json.load(fp)
 
-def handle_request(request):
-    data = load_data()
-    service = request.get("service")
-    payload = request.get("data", {})
-    ts = payload.get("timestamp", int(time.time() * 1000))
+def save_json(filename, data):
+    with open(filename, "w") as fp:
+        json.dump(data, fp, indent=2)
 
-    # LOGIN
+ctx = zmq.Context()
+rep = ctx.socket(zmq.REP)
+rep.bind("tcp://*:5556")
+
+print("🧠 Servidor (Parte 1 - JSON) rodando em tcp://*:5556")
+
+while True:
+    raw = rep.recv()
+    msg = json.loads(raw.decode("utf-8"))
+    service = msg.get("service")
+    data = msg.get("data", {})
+    timestamp = datetime.now().isoformat()
+
+    # Serviço: LOGIN -------------------------------------------------------
     if service == "login":
-        user = payload.get("user")
-        if not user:
-            return {
+        user = data.get("user")
+        users = load_json(USERS_FILE)
+        if user in users:
+            reply = {
                 "service": "login",
-                "data": {"status": "erro", "timestamp": ts, "description": "Usuário não informado"}
+                "data": {
+                    "status": "erro",
+                    "timestamp": timestamp,
+                    "description": "Usuário já logado"
+                }
             }
-        if user not in data["users"]:
-            data["users"].append(user)
-            save_data(data)
-        return {"service": "login", "data": {"status": "sucesso", "timestamp": ts}}
+        else:
+            users.append(user)
+            save_json(USERS_FILE, users)
+            reply = {
+                "service": "login",
+                "data": {
+                    "status": "sucesso",
+                    "timestamp": timestamp
+                }
+            }
 
-    # LISTAR USERS
+    # Serviço: USERS -------------------------------------------------------
     elif service == "users":
-        return {"service": "users", "data": {"timestamp": ts, "users": data["users"]}}
-
-    # CRIAR CHANNEL
-    elif service == "channel":
-        channel = payload.get("channel")
-        if not channel:
-            return {
-                "service": "channel",
-                "data": {"status": "erro", "timestamp": ts, "description": "Canal não informado"}
+        users = load_json(USERS_FILE)
+        reply = {
+            "service": "users",
+            "data": {
+                "timestamp": timestamp,
+                "users": users
             }
-        if channel not in data["channels"]:
-            data["channels"].append(channel)
-            save_data(data)
-        return {"service": "channel", "data": {"status": "sucesso", "timestamp": ts}}
-
-    # LISTAR CHANNELS
-    elif service == "channels":
-        return {"service": "channels", "data": {"timestamp": ts, "channels": data["channels"]}}
-
-    else:
-        return {
-            "service": "erro",
-            "data": {"timestamp": ts, "description": f"Serviço desconhecido: {service}"}
         }
 
+    # Serviço: CHANNEL -----------------------------------------------------
+    elif service == "channel":
+        channel = data.get("channel")
+        channels = load_json(CHANNELS_FILE)
+        if channel in channels:
+            reply = {
+                "service": "channel",
+                "data": {
+                    "status": "erro",
+                    "timestamp": timestamp,
+                    "description": "Canal já existe"
+                }
+            }
+        else:
+            channels.append(channel)
+            save_json(CHANNELS_FILE, channels)
+            reply = {
+                "service": "channel",
+                "data": {
+                    "status": "sucesso",
+                    "timestamp": timestamp
+                }
+            }
 
-def main():
-    context = zmq.Context()
-    socket = context.socket(zmq.REP)
-    socket.bind("tcp://*:5555")
-    print("🟢 Servidor Python iniciado em tcp://*:5555")
+    # Serviço: CHANNELS ----------------------------------------------------
+    elif service == "channels":
+        channels = load_json(CHANNELS_FILE)
+        reply = {
+            "service": "channels",
+            "data": {
+                "timestamp": timestamp,
+                "channels": channels
+            }
+        }
 
-    while True:
-        message = socket.recv_json()
-        print(f"📩 Recebido: {message}")
-        response = handle_request(message)
-        print(f"📤 Enviando resposta: {response}")
-        socket.send_json(response)
+    # Serviço inválido -----------------------------------------------------
+    else:
+        reply = {
+            "service": "erro",
+            "data": {
+                "timestamp": timestamp,
+                "description": "Serviço inválido"
+            }
+        }
 
-
-if __name__ == "__main__":
-    main()
+    rep.send_string(json.dumps(reply))
