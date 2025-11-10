@@ -3,7 +3,7 @@ import json
 import os
 import time
 
-DATA_FILE = "data.json"
+DATA_FILE = "app/data.json"
 
 def load_data():
     if not os.path.exists(DATA_FILE):
@@ -16,46 +16,42 @@ def save_data(data):
         json.dump(data, f, indent=2)
 
 def main():
-    context = zmq.Context()
+    ctx = zmq.Context()
 
-    # REQ/REP para comandos
-    rep_socket = context.socket(zmq.REP)
-    rep_socket.bind("tcp://*:5555")
+    rep = ctx.socket(zmq.REP)
+    rep.bind("tcp://*:5555")
 
-    # PUB para mensagens
-    pub_socket = context.socket(zmq.PUB)
-    pub_socket.connect("tcp://proxy:5557")  # publica no proxy
+    pub = ctx.socket(zmq.PUB)
+    pub.connect("tcp://proxy:5557")
 
-    data = load_data()
     print("🧠 Servidor ativo em tcp://*:5555 (REQ/REP) e tcp://proxy:5557 (PUB)")
 
+    data = load_data()
+
     while True:
-        msg = rep_socket.recv_json()
+        msg_raw = rep.recv_string()
+        msg = json.loads(msg_raw)
         service = msg.get("service")
         payload = msg.get("data", {})
-        now = time.time()
+        now = int(time.time() * 1000)
 
         if service == "login":
             user = payload.get("user")
-            if user not in data["users"]:
+            if user and user not in data["users"]:
                 data["users"].append(user)
                 save_data(data)
-            rep_socket.send_json({"service": "login", "data": {"status": "sucesso", "timestamp": now}})
-
-        elif service == "users":
-            rep_socket.send_json({"service": "users", "data": {"users": data["users"], "timestamp": now}})
+            rep.send_json({"service": "login", "data": {"status": "OK", "timestamp": now}})
 
         elif service == "channel":
-            channel = payload.get("channel")
-            if channel not in data["channels"]:
+            channel = payload.get("channel") or payload.get("name")
+            if not channel:
+                rep.send_json({"service": "channel", "data": {"status": "erro", "message": "Canal inválido", "timestamp": now}})
+            elif channel not in data["channels"]:
                 data["channels"].append(channel)
                 save_data(data)
-                rep_socket.send_json({"service": "channel", "data": {"status": "sucesso", "timestamp": now}})
+                rep.send_json({"service": "channel", "data": {"status": "OK", "timestamp": now}})
             else:
-                rep_socket.send_json({"service": "channel", "data": {"status": "erro", "message": "Canal já existe", "timestamp": now}})
-
-        elif service == "channels":
-            rep_socket.send_json({"service": "channels", "data": {"channels": data["channels"], "timestamp": now}})
+                rep.send_json({"service": "channel", "data": {"status": "erro", "message": "Canal já existe", "timestamp": now}})
 
         elif service == "publish":
             user = payload.get("user")
@@ -63,12 +59,12 @@ def main():
             message = payload.get("message")
 
             if channel not in data["channels"]:
-                rep_socket.send_json({"service": "publish", "data": {"status": "erro", "message": "Canal inexistente", "timestamp": now}})
+                rep.send_json({"service": "publish", "data": {"status": "erro", "message": f"Canal '{channel}' não existe", "timestamp": now}})
             else:
-                pub_socket.send_string(f"{channel} {user}: {message}")
+                pub.send_string(f"{channel} {user}: {message}")
                 data["messages"].append({"type": "channel", "channel": channel, "user": user, "message": message, "timestamp": now})
                 save_data(data)
-                rep_socket.send_json({"service": "publish", "data": {"status": "OK", "timestamp": now}})
+                rep.send_json({"service": "publish", "data": {"status": "OK", "timestamp": now}})
 
         elif service == "message":
             src = payload.get("src")
@@ -76,15 +72,15 @@ def main():
             message = payload.get("message")
 
             if dst not in data["users"]:
-                rep_socket.send_json({"service": "message", "data": {"status": "erro", "message": "Usuário inexistente", "timestamp": now}})
+                rep.send_json({"service": "message", "data": {"status": "erro", "message": f"Usuário '{dst}' não existe", "timestamp": now}})
             else:
-                pub_socket.send_string(f"{dst} {src}: {message}")
+                pub.send_string(f"{dst} {src}: {message}")
                 data["messages"].append({"type": "direct", "src": src, "dst": dst, "message": message, "timestamp": now})
                 save_data(data)
-                rep_socket.send_json({"service": "message", "data": {"status": "OK", "timestamp": now}})
+                rep.send_json({"service": "message", "data": {"status": "OK", "timestamp": now}})
 
         else:
-            rep_socket.send_json({"service": "erro", "data": {"message": f"Serviço desconhecido: {service}", "timestamp": now}})
+            rep.send_json({"service": "erro", "data": {"message": f"Serviço desconhecido: {service}", "timestamp": now}})
 
 if __name__ == "__main__":
     main()

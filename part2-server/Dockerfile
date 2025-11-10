@@ -11,6 +11,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # 3. Copia o código-fonte
 COPY server.py .
 # (Se houver outros arquivos Python, use COPY . .)
+RUN mkdir -p data
+RUN pip install pyzmq
 
 # 4. Define o comando de execução
 CMD ["python", "server.py"]

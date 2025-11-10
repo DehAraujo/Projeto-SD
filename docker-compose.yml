@@ -21,14 +21,16 @@ services:
 
   client:
     build: ./part2-client
-    container_name: client
     depends_on:
       - server
       - proxy
+    deploy:
+      replicas: 2
 
   bot:
     build: ./part2-bot
-    container_name: bot
     depends_on:
       - server
       - proxy
+    deploy:
+      replicas: 2

@@ -1,13 +1,11 @@
 import zmq
 
-context = zmq.Context()
+ctx = zmq.Context()
+xsub = ctx.socket(zmq.XSUB)
+xpub = ctx.socket(zmq.XPUB)
 
-# Cria os sockets de entrada e saída
-frontend = context.socket(zmq.XSUB)
-frontend.bind("tcp://*:5557")  # para publishers (servidor)
+xsub.bind("tcp://*:5557")  # servidor publica aqui
+xpub.bind("tcp://*:5558")  # clientes/bots se inscrevem aqui
 
-backend = context.socket(zmq.XPUB)
-backend.bind("tcp://*:5558")   # para subscribers (clientes/bots)
-
-print("🔁 Proxy ZeroMQ rodando nas portas 5557 (XSUB) e 5558 (XPUB)")
-zmq.proxy(frontend, backend)
+print("🔁 Proxy rodando (XSUB tcp://*:5557 ↔ XPUB tcp://*:5558)")
+zmq.proxy(xsub, xpub)
