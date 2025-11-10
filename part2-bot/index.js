@@ -1,108 +1,128 @@
 const zmq = require("zeromq");
+const { randomInt } = require("crypto"); 
 
-const botNames = ["Ana", "Bruno", "Carla", "Diego", "Eva", "Felipe"];
+const REQ_ADDR = "tcp://server:5556";
+const SUB_ADDR = "tcp://proxy:5558";
 
-const frasesPublicas = [
-  "Oi, pessoal!",
-  "Como vocês estão?",
-  "Alguém viu as novidades de hoje?",
-  "Estou testando o sistema 😄",
-  "Essa conversa está animada!",
-  "Haha, muito bom!",
-  "Adoro conversar com vocês!",
-  "O servidor está rodando liso!",
+const users = ["Ana", "Bruno", "Carlos", "Diana", "Eduardo"];
+const channels = ["geral", "dev", "games", "random", "suporte", "offtopic"];
+const mensagens = [
+  "Olá pessoal!",
+  "Alguém aí?",
+  "Trabalhando no projeto 😎",
+  "ZeroMQ é top!",
+  "Testando mensagens automáticas",
+  "Pub/Sub funcionando!",
+  "Vamos jogar depois?",
+  "Bug resolvido 🎉",
+  "Mensagem de teste",
+  "Enviando mais uma!"
 ];
 
-const frasesPrivadas = [
-  "Ei, tudo bem?",
-  "Você viu o que o pessoal falou?",
-  "Queria te contar uma coisa 🤫",
-  "Acho que o Diego vai gostar disso!",
-  "Tá curtindo o chat?",
-  "Depois te chamo pra conversar melhor.",
-  "Estou mandando só pra você 😉",
-];
+async function main() {
+  const username = users[randomInt(users.length)];
+  console.log(`🤖 Bot iniciado como: ${username}`);
 
-async function startBot(name) {
   const req = new zmq.Request();
+  await req.connect(REQ_ADDR);
+
   const sub = new zmq.Subscriber();
+  await sub.connect(SUB_ADDR);
 
-  await req.connect("tcp://server:5555");
-  await sub.connect("tcp://proxy:5558");
+  // --- 1. LOGIN ---
+  console.log(`💬 Enviando login para ${username}...`);
+  await req.send(JSON.stringify({ service: "login", data: { user: username, timestamp: new Date().toISOString() } }));
+  const loginReply = await req.receive();
+  console.log(`✅ Login Status: ${loginReply.toString()}`);
 
-  // Inscreve-se no canal público e no próprio nome
-  sub.subscribe("geral");
-  sub.subscribe(name);
+  // --- 2. CRIAÇÃO/VALIDAÇÃO DE CANAIS ---
+  console.log("🛠️ Criando/Validando canais...");
+  for (const ch of channels) {
+    const channelMsg = {
+        service: "channel",
+        data: {
+            channel: ch,
+            user: username,
+            action: "create", 
+            timestamp: new Date().toISOString(),
+        },
+    };
+    await req.send(JSON.stringify(channelMsg));
+    const [channelReply] = await req.receive();
+    console.log(`   Canal ${ch} → Confirmação: ${channelReply.toString()}`);
+  }
 
-  console.log(`🤖 Bot ${name} conectado!`);
+  // --- 3. SUBSCRIÇÃO ---
+  sub.subscribe(username); // Subscreve no nome de usuário (para privadas)
+  channels.forEach(c => sub.subscribe(c));
 
-  // Thread de recebimento
+  // --- 4. THREAD PARA OUVIR MENSAGENS (Subscriber) ---
   (async () => {
-    for await (const [msg] of sub) {
-      console.log(`📥 ${name} recebeu: ${msg.toString()}`);
+    try {
+      for await (const [msg] of sub) {
+        const fullMessage = msg.toString();
+        console.log(`📨 (${username}) recebeu: ${fullMessage}`);
+      }
+    } catch (e) {
+      console.error(`Erro no loop de subscrição: ${e}`);
     }
   })();
 
-  // Faz login no servidor
-  await req.send(
-    JSON.stringify({ service: "login", data: { user: name } })
-  );
-  await req.receive();
-
-  // Loop de mensagens
+  // --- 5. LOOP DE PUBLICAÇÃO E MENSAGEM PRIVADA (CORRIGIDO) ---
   while (true) {
-    const isPrivate = Math.random() < 0.4; // 40% chance de mensagem privada
-    const timestamp = Date.now();
+    const isPrivate = randomInt(100) < 30; // 30% de chance de ser mensagem privada
+    const text = mensagens[randomInt(mensagens.length)];
+    let msg, logMessage;
 
     if (isPrivate) {
-      // Envia mensagem privada
-      const dst = botNames[Math.floor(Math.random() * botNames.length)];
-      if (dst === name) continue; // não envia pra si mesmo
+        // === MENSAGEM PRIVADA (SERVICE: message) ===
+        const dstUser = users[randomInt(users.length)];
+        
+        // Evita que o bot envie mensagem privada para si mesmo
+        if (dstUser !== username) { 
+            msg = {
+                service: "message",
+                data: {
+                    src: username, // Usuário de origem
+                    dst: dstUser,  // Usuário de destino (Tópico de PUB)
+                    message: text,
+                    timestamp: new Date().toISOString(),
+                },
+            };
+            logMessage = `✉️ (${username}) enviou PRIVADO para ${dstUser}: "${text}"`;
+        } else {
+            // Se for para si mesmo, trata como uma publicação em canal para não perder a iteração
+             isPrivate = false;
+        }
 
-      const message =
-        frasesPrivadas[Math.floor(Math.random() * frasesPrivadas.length)];
-
-      const payload = {
-        service: "message",
-        data: {
-          src: name,
-          dst,
-          message,
-          timestamp,
-        },
-      };
-
-      await req.send(JSON.stringify(payload));
-      const [reply] = await req.receive();
-      console.log(`💌 ${name} → ${dst}: "${message}" | ${reply.toString()}`);
-    } else {
-      // Mensagem pública
-      const message =
-        frasesPublicas[Math.floor(Math.random() * frasesPublicas.length)];
-
-      const payload = {
-        service: "publish",
-        data: {
-          user: name,
-          channel: "geral",
-          message,
-          timestamp,
-        },
-      };
-
-      await req.send(JSON.stringify(payload));
-      const [reply] = await req.receive();
-      console.log(`🗣️ ${name} → geral: "${message}" | ${reply.toString()}`);
+    } 
+    
+    if (!isPrivate) {
+        // === PUBLICAÇÃO EM CANAL (SERVICE: publish) ===
+        const ch = channels[randomInt(channels.length)];
+        msg = {
+            service: "publish",
+            data: {
+                user: username,
+                channel: ch,
+                message: text,
+                timestamp: new Date().toISOString(),
+            },
+        };
+        logMessage = `💬 (${username}) publicou em ${ch}: "${text}"`;
     }
 
-    // Espera entre 3 e 8 segundos
-    const delay = 3000 + Math.random() * 5000;
-    await new Promise((r) => setTimeout(r, delay));
+    // Envio REQ para o servidor e Recebe a confirmação (Se msg não for nula)
+    if (msg) {
+        await req.send(JSON.stringify(msg));
+        const [reply] = await req.receive();
+        
+        console.log(`${logMessage} → Confirmação: ${reply.toString()}`);
+    }
+    
+    // Aguarda um tempo antes da próxima mensagem
+    await new Promise(r => setTimeout(r, randomInt(500, 2000))); 
   }
 }
 
-// Inicia os bots
-(async () => {
-  const myName = botNames[Math.floor(Math.random() * botNames.length)];
-  await startBot(myName);
-})();
+main().catch(console.error);
