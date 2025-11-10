@@ -1,72 +1,143 @@
 import zmq
 import msgpack
+import os
+import json
+from datetime import datetime
 
-ctx = zmq.Context()
+# --- Diretórios e Arquivos de Persistência ---
+DATA_DIR = "data"
+USERS_FILE = os.path.join(DATA_DIR, "users.json")
+CHANNELS_FILE = os.path.join(DATA_DIR, "channels.json")
+MESSAGES_FILE = os.path.join(DATA_DIR, "messages.json")
 
-# REQ/REP — para receber requisições dos clientes e bots
-rep = ctx.socket(zmq.REP)
-rep.bind("tcp://*:5556")
+# Cria pasta de dados se não existir
+os.makedirs(DATA_DIR, exist_ok=True)
 
-# PUB/SUB — para enviar mensagens públicas e privadas
-pub = ctx.socket(zmq.PUB)
-pub.bind("tcp://*:5557")
+# --- Funções de persistência ---
+def load_data(file):
+    if not os.path.exists(file):
+        return []
+    with open(file, "r") as f:
+        try:
+            return json.load(f)
+        except json.JSONDecodeError:
+            print(f"Aviso: {file} corrompido ou vazio. Reiniciando.")
+            return []
 
-print("🧠 Servidor pronto — trocando mensagens com MessagePack...")
+def save_data(file, data):
+    with open(file, "w") as f:
+        json.dump(data, f, indent=2)
 
+# --- Estado Global em Memória ---
+users = load_data(USERS_FILE)
+channels = load_data(CHANNELS_FILE)
+messages = load_data(MESSAGES_FILE)
+
+# --- Sockets ZMQ ---
+context = zmq.Context()
+rep_socket = context.socket(zmq.REP)
+rep_socket.bind("tcp://*:5556")
+pub_socket = context.socket(zmq.PUB)
+pub_socket.connect("tcp://proxy:5557")
+
+print("🧠 Servidor parte 3 iniciado (MessagePack com cache em memória)")
+
+# --- Loop Principal ---
 while True:
-    packed = rep.recv()
-    msg = msgpack.unpackb(packed, raw=False)
+    try:
+        raw_msg = rep_socket.recv()
+        msg = msgpack.unpackb(raw_msg, raw=False)
+    except Exception as e:
+        print(f"Erro ao receber mensagem REQ: {e}")
+        continue
+
     service = msg.get("service")
     data = msg.get("data", {})
-    user = data.get("user")
+    response = {"service": service, "data": {}}
+    current_timestamp = datetime.now().isoformat()
 
-    # --- PUBLICAÇÃO EM CANAL ---
-    if service == "publish":
-        channel = data["channel"]
-        message = data["message"]
-        payload = {
-            "service": "publish",
-            "data": {
+    # === LOGIN ===
+    if service == "login":
+        user = data.get("user")
+        if user not in users:
+            users.append(user)
+            save_data(USERS_FILE, users)
+        response["data"] = {"status": "sucesso", "timestamp": current_timestamp}
+
+    # === USERS ===
+    elif service == "users":
+        response["data"] = {"users": users, "timestamp": current_timestamp}
+
+    # === CRIAR/VALIDAR CANAL ===
+    elif service == "channel":
+        channel = data.get("channel")
+        if channel not in channels:
+            channels.append(channel)
+            save_data(CHANNELS_FILE, channels)
+            response["data"] = {"status": "sucesso", "timestamp": current_timestamp}
+        else:
+            response["data"] = {"status": "sucesso", "message": "Canal já existe", "timestamp": current_timestamp}
+
+    # === LISTAR CANAIS ===
+    elif service == "channels":
+        response["data"] = {"channels": channels, "timestamp": current_timestamp}
+
+    # === PUBLICAR EM CANAL ===
+    elif service == "publish":
+        user = data.get("user")
+        channel = data.get("channel")
+        message = data.get("message")
+
+        if channel not in channels:
+            response["data"] = {"status": "erro", "message": "Canal inexistente", "timestamp": current_timestamp}
+        else:
+            pub_message_data = {
+                "topic": channel,
                 "user": user,
-                "channel": channel,
                 "message": message,
-                "timestamp": data["timestamp"],
-            },
-        }
+                "timestamp": current_timestamp
+            }
+            pub_socket.send(msgpack.packb(pub_message_data, use_bin_type=True))
 
-        # Envia para todos os inscritos no canal
-        pub.send_multipart([channel.encode(), msgpack.packb(payload)])
-        rep.send(msgpack.packb({
-            "service": "publish",
-            "data": {"status": "OK", "timestamp": data["timestamp"]},
-        }))
+            messages.append({
+                "type": "channel",
+                "from": user,
+                "to": channel,
+                "message": message,
+                "timestamp": current_timestamp
+            })
+            save_data(MESSAGES_FILE, messages)
+            response["data"] = {"status": "OK", "timestamp": current_timestamp}
 
-    # --- MENSAGEM PRIVADA ---
+    # === MENSAGEM PRIVADA ===
     elif service == "message":
-        src = data["src"]
-        dst = data["dst"]
-        message = data["message"]
+        src = data.get("src")
+        dst = data.get("dst")
+        message = data.get("message")
 
-        payload = {
-            "service": "message",
-            "data": {
-                "src": src,
-                "dst": dst,
-                "message": message,
-                "timestamp": data["timestamp"],
-            },
+        # ✅ Aceita mesmo que o destino ainda não tenha logado
+        pub_message_data = {
+            "topic": dst,
+            "user": src,
+            "message": message,
+            "timestamp": current_timestamp
         }
+        pub_socket.send(msgpack.packb(pub_message_data, use_bin_type=True))
 
-        # Publica no tópico com o nome do destinatário
-        pub.send_multipart([dst.encode(), msgpack.packb(payload)])
-        rep.send(msgpack.packb({
-            "service": "message",
-            "data": {"status": "OK", "timestamp": data["timestamp"]},
-        }))
+        messages.append({
+            "type": "private",
+            "from": src,
+            "to": dst,
+            "message": message,
+            "timestamp": current_timestamp
+        })
+        save_data(MESSAGES_FILE, messages)
 
-    # --- SERVIÇO DESCONHECIDO ---
+        response["data"] = {"status": "OK", "timestamp": current_timestamp}
+
+    # === SERVIÇO DESCONHECIDO ===
     else:
-        rep.send(msgpack.packb({
-            "service": "erro",
-            "data": {"message": "Serviço inválido"},
-        }))
+        response["data"] = {"status": "erro", "message": "Serviço desconhecido", "timestamp": current_timestamp}
+
+    # --- Envia resposta ---
+    rep_socket.send(msgpack.packb(response, use_bin_type=True))

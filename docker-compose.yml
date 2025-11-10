@@ -5,12 +5,11 @@ services:
     build: ./part3-server
     depends_on:
       - proxy
-    # Volumes e Environment para persistência/conexão (ADICIONE SE FALTAR)
-    # environment:
-    #   - PUB_ADDRESS=tcp://proxy:5557 
-    #   - SUB_ADDRESS=tcp://proxy:5558
-    # volumes:
-    #   - ./data:/data 
+    volumes:                              # 🔥 deve ficar DENTRO do serviço
+      - ./part3-server/data:/app/data     # persistência dos dados
+    environment:
+      - PUB_ADDRESS=tcp://proxy:5557
+      - SUB_ADDRESS=tcp://proxy:5558
     networks:
       - appnet
 
@@ -18,10 +17,9 @@ services:
     build: ./part3-client
     depends_on:
       - proxy
-      - server # Depende do servidor para Login
-    # 💡 REPLICAS: 2 Clientes em loop
+      - server
     deploy:
-      replicas: 2 
+      replicas: 2
     networks:
       - appnet
 
@@ -29,19 +27,17 @@ services:
     build: ./part3-bot
     depends_on:
       - proxy
-      - server # Depende do servidor para Login
-    # 💡 REPLICAS: 8 Bots em loop
+      - server
     deploy:
-      replicas: 8
+      replicas: 10
     networks:
       - appnet
 
   proxy:
-    build: ./part2-proxy
+    build: ./part3-proxy
     ports:
-      # Portas de PUB/SUB (5557:XPUB, 5558:XSUB)
-      - "5557:5557" # XSUB (Entrada de Publicadores)
-      - "5558:5558" # XPUB (Saída de Assinantes)
+      - "5557:5557"   # XSUB (Entrada de Publicadores)
+      - "5558:5558"   # XPUB (Saída de Assinantes)
     networks:
       - appnet
 
