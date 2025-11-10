@@ -12,3 +12,9 @@ services:
     container_name: client
     depends_on:
       - server
+
+  bot:
+    build: ./part1-bot
+    container_name: bot
+    depends_on:
+      - server
