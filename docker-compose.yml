@@ -1,20 +1,38 @@
 version: '3.8'
 
 services:
-  server:
-    build: ./part1-server
-    container_name: server
+  proxy:
+    image: zeromq/zmq-proxy
+    container_name: proxy
+    command: >
+      sh -c "
+      echo '🔗 Iniciando ZeroMQ Proxy PUB/SUB...';
+      socat TCP-LISTEN:5557,fork TCP-CONNECT:5558"
     ports:
-      - "5555:5555"
+      - "5557:5557"
+      - "5558:5558"
+
+  server:
+    build: ./part2-server
+    container_name: server
+    volumes:
+      - ./data:/app/data
+    depends_on:
+      - proxy
+    environment:
+      - PUB_ADDRESS=tcp://proxy:5557
+      - SUB_ADDRESS=tcp://proxy:5558
 
   client:
-    build: ./part1-client
+    build: ./part2-client
     container_name: client
     depends_on:
       - server
+      - proxy
 
   bot:
-    build: ./part1-bot
+    build: ./part2-bot
     container_name: bot
     depends_on:
       - server
+      - proxy
