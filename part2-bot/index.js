@@ -70,7 +70,7 @@ async function main() {
 
   // --- 5. LOOP DE PUBLICAÇÃO E MENSAGEM PRIVADA (CORRIGIDO) ---
   while (true) {
-    const isPrivate = randomInt(100) < 30; // 30% de chance de ser mensagem privada
+    let isPrivate = randomInt(100) < 30;
     const text = mensagens[randomInt(mensagens.length)];
     let msg, logMessage;
 
