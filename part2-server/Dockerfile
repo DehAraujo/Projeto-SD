@@ -1,22 +1,16 @@
-FROM golang:1.22
-
+# Dockerfile CORRETO para Python
+FROM python:3.11-slim
 WORKDIR /app
 
-# Copia todos os arquivos do servidor
-COPY . .
+# 1. Copia o manifesto de dependências
+COPY requirements.txt .
 
-# Inicializa módulo Go (se ainda não existir)
-RUN [ ! -f go.mod ] && go mod init server || true
+# 2. Instala as dependências Python (pyzmq)
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Instala dependências (como zmq4)
-RUN go get github.com/pebbe/zmq4
-RUN go mod tidy
+# 3. Copia o código-fonte
+COPY server.py .
+# (Se houver outros arquivos Python, use COPY . .)
 
-# Compila o código Go
-RUN go build -o server .
-
-# Expõe as portas que o servidor usa
-EXPOSE 5555 5556
-
-# Executa o servidor compilado
-CMD ["./server"]
+# 4. Define o comando de execução
+CMD ["python", "server.py"]

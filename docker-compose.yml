@@ -2,12 +2,8 @@ version: '3.8'
 
 services:
   proxy:
-    image: zeromq/zmq-proxy
+    build: ./part2-proxy
     container_name: proxy
-    command: >
-      sh -c "
-      echo '🔗 Iniciando ZeroMQ Proxy PUB/SUB...';
-      socat TCP-LISTEN:5557,fork TCP-CONNECT:5558"
     ports:
       - "5557:5557"
       - "5558:5558"

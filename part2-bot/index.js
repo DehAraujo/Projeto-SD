@@ -1,5 +1,6 @@
-import zmq from "zeromq";
-import { randomUUID } from "crypto";
+const zmq = require("zeromq");
+
+const { randomUUID } = require("crypto");
 
 const user = "bot-" + randomUUID().slice(0, 4);
 const req = new zmq.Request();

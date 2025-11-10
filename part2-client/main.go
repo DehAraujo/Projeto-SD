@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"math/rand"
 	"time"
+
+	zmq "github.com/pebbe/zmq4"
 )
 
 type Message struct {
