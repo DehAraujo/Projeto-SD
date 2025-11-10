@@ -1,0 +1,1782 @@
+{
+  "users": [
+    "client-717",
+    "client-690",
+    "client-169",
+    "Bruno",
+    "client-543",
+    "Felipe",
+    "Carla",
+    "Diego",
+    "Ana"
+  ],
+  "channels": [
+    "geral"
+  ],
+  "messages": [
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-717",
+      "message": "Ol\u00e1 de client-717!",
+      "timestamp": 1762748027558
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "bot-39cb",
+      "message": "Mensagem autom\u00e1tica de bot-39cb",
+      "timestamp": 1762748027641
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-690",
+      "message": "Ol\u00e1 de client-690!",
+      "timestamp": 1762748027890
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "bot-17c2",
+      "message": "Mensagem autom\u00e1tica de bot-17c2",
+      "timestamp": 1762748027931
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-717",
+      "message": "Ol\u00e1 de client-717!",
+      "timestamp": 1762748030562
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-690",
+      "message": "Ol\u00e1 de client-690!",
+      "timestamp": 1762748030895
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "bot-39cb",
+      "message": "Mensagem autom\u00e1tica de bot-39cb",
+      "timestamp": 1762748032648
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "bot-17c2",
+      "message": "Mensagem autom\u00e1tica de bot-17c2",
+      "timestamp": 1762748032934
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-717",
+      "message": "Ol\u00e1 de client-717!",
+      "timestamp": 1762748033565
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-690",
+      "message": "Ol\u00e1 de client-690!",
+      "timestamp": 1762748033899
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-717",
+      "message": "Ol\u00e1 de client-717!",
+      "timestamp": 1762748036567
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-690",
+      "message": "Ol\u00e1 de client-690!",
+      "timestamp": 1762748036903
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "bot-39cb",
+      "message": "Mensagem autom\u00e1tica de bot-39cb",
+      "timestamp": 1762748037652
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "bot-17c2",
+      "message": "Mensagem autom\u00e1tica de bot-17c2",
+      "timestamp": 1762748037938
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-717",
+      "message": "Ol\u00e1 de client-717!",
+      "timestamp": 1762748039571
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-690",
+      "message": "Ol\u00e1 de client-690!",
+      "timestamp": 1762748039906
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-717",
+      "message": "Ol\u00e1 de client-717!",
+      "timestamp": 1762748042574
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "bot-39cb",
+      "message": "Mensagem autom\u00e1tica de bot-39cb",
+      "timestamp": 1762748042655
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-690",
+      "message": "Ol\u00e1 de client-690!",
+      "timestamp": 1762748042909
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "bot-17c2",
+      "message": "Mensagem autom\u00e1tica de bot-17c2",
+      "timestamp": 1762748042939
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-717",
+      "message": "Ol\u00e1 de client-717!",
+      "timestamp": 1762748045577
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-690",
+      "message": "Ol\u00e1 de client-690!",
+      "timestamp": 1762748045913
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "bot-39cb",
+      "message": "Mensagem autom\u00e1tica de bot-39cb",
+      "timestamp": 1762748047659
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "bot-17c2",
+      "message": "Mensagem autom\u00e1tica de bot-17c2",
+      "timestamp": 1762748047942
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-717",
+      "message": "Ol\u00e1 de client-717!",
+      "timestamp": 1762748048579
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-690",
+      "message": "Ol\u00e1 de client-690!",
+      "timestamp": 1762748048915
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-717",
+      "message": "Ol\u00e1 de client-717!",
+      "timestamp": 1762748051582
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-690",
+      "message": "Ol\u00e1 de client-690!",
+      "timestamp": 1762748051919
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "bot-39cb",
+      "message": "Mensagem autom\u00e1tica de bot-39cb",
+      "timestamp": 1762748052662
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "bot-17c2",
+      "message": "Mensagem autom\u00e1tica de bot-17c2",
+      "timestamp": 1762748052944
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-717",
+      "message": "Ol\u00e1 de client-717!",
+      "timestamp": 1762748054586
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-690",
+      "message": "Ol\u00e1 de client-690!",
+      "timestamp": 1762748054922
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-717",
+      "message": "Ol\u00e1 de client-717!",
+      "timestamp": 1762748057589
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "bot-39cb",
+      "message": "Mensagem autom\u00e1tica de bot-39cb",
+      "timestamp": 1762748057663
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-690",
+      "message": "Ol\u00e1 de client-690!",
+      "timestamp": 1762748057924
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "bot-17c2",
+      "message": "Mensagem autom\u00e1tica de bot-17c2",
+      "timestamp": 1762748057945
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-717",
+      "message": "Ol\u00e1 de client-717!",
+      "timestamp": 1762748060590
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-690",
+      "message": "Ol\u00e1 de client-690!",
+      "timestamp": 1762748060927
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "bot-39cb",
+      "message": "Mensagem autom\u00e1tica de bot-39cb",
+      "timestamp": 1762748062666
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "bot-17c2",
+      "message": "Mensagem autom\u00e1tica de bot-17c2",
+      "timestamp": 1762748062948
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-717",
+      "message": "Ol\u00e1 de client-717!",
+      "timestamp": 1762748063594
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-690",
+      "message": "Ol\u00e1 de client-690!",
+      "timestamp": 1762748063930
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-717",
+      "message": "Ol\u00e1 de client-717!",
+      "timestamp": 1762748066598
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-690",
+      "message": "Ol\u00e1 de client-690!",
+      "timestamp": 1762748066932
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "bot-39cb",
+      "message": "Mensagem autom\u00e1tica de bot-39cb",
+      "timestamp": 1762748067669
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "bot-17c2",
+      "message": "Mensagem autom\u00e1tica de bot-17c2",
+      "timestamp": 1762748067950
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-717",
+      "message": "Ol\u00e1 de client-717!",
+      "timestamp": 1762748069603
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-690",
+      "message": "Ol\u00e1 de client-690!",
+      "timestamp": 1762748069934
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-717",
+      "message": "Ol\u00e1 de client-717!",
+      "timestamp": 1762748072606
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "bot-39cb",
+      "message": "Mensagem autom\u00e1tica de bot-39cb",
+      "timestamp": 1762748072672
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-690",
+      "message": "Ol\u00e1 de client-690!",
+      "timestamp": 1762748072938
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "bot-17c2",
+      "message": "Mensagem autom\u00e1tica de bot-17c2",
+      "timestamp": 1762748072952
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-717",
+      "message": "Ol\u00e1 de client-717!",
+      "timestamp": 1762748075610
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-690",
+      "message": "Ol\u00e1 de client-690!",
+      "timestamp": 1762748075945
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "bot-39cb",
+      "message": "Mensagem autom\u00e1tica de bot-39cb",
+      "timestamp": 1762748077676
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "bot-17c2",
+      "message": "Mensagem autom\u00e1tica de bot-17c2",
+      "timestamp": 1762748077958
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-717",
+      "message": "Ol\u00e1 de client-717!",
+      "timestamp": 1762748078612
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-690",
+      "message": "Ol\u00e1 de client-690!",
+      "timestamp": 1762748078948
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-717",
+      "message": "Ol\u00e1 de client-717!",
+      "timestamp": 1762748081616
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-690",
+      "message": "Ol\u00e1 de client-690!",
+      "timestamp": 1762748081953
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "bot-39cb",
+      "message": "Mensagem autom\u00e1tica de bot-39cb",
+      "timestamp": 1762748082680
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "bot-17c2",
+      "message": "Mensagem autom\u00e1tica de bot-17c2",
+      "timestamp": 1762748082960
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-717",
+      "message": "Ol\u00e1 de client-717!",
+      "timestamp": 1762748084619
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-690",
+      "message": "Ol\u00e1 de client-690!",
+      "timestamp": 1762748084955
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-717",
+      "message": "Ol\u00e1 de client-717!",
+      "timestamp": 1762748087623
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "bot-39cb",
+      "message": "Mensagem autom\u00e1tica de bot-39cb",
+      "timestamp": 1762748087682
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-690",
+      "message": "Ol\u00e1 de client-690!",
+      "timestamp": 1762748087957
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "bot-17c2",
+      "message": "Mensagem autom\u00e1tica de bot-17c2",
+      "timestamp": 1762748087962
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-717",
+      "message": "Ol\u00e1 de client-717!",
+      "timestamp": 1762748090626
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-690",
+      "message": "Ol\u00e1 de client-690!",
+      "timestamp": 1762748090961
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "bot-39cb",
+      "message": "Mensagem autom\u00e1tica de bot-39cb",
+      "timestamp": 1762748092686
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "bot-17c2",
+      "message": "Mensagem autom\u00e1tica de bot-17c2",
+      "timestamp": 1762748092964
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "bot-39cb",
+      "message": "Mensagem autom\u00e1tica de bot-39cb",
+      "timestamp": 1762748097692
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "bot-17c2",
+      "message": "Mensagem autom\u00e1tica de bot-17c2",
+      "timestamp": 1762748097972
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "bot-39cb",
+      "message": "Mensagem autom\u00e1tica de bot-39cb",
+      "timestamp": 1762748102698
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "bot-17c2",
+      "message": "Mensagem autom\u00e1tica de bot-17c2",
+      "timestamp": 1762748102979
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-169",
+      "message": "Ol\u00e1 de client-169!",
+      "timestamp": 1762748300134
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-543",
+      "message": "Ol\u00e1 de client-543!",
+      "timestamp": 1762748300569
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Felipe",
+      "message": "O servidor est\u00e1 rodando liso!",
+      "timestamp": 1762748300651
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Carla",
+      "message": "Algu\u00e9m viu as novidades de hoje?",
+      "timestamp": 1762748300869
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Diego",
+      "message": "Haha, muito bom!",
+      "timestamp": 1762748301080
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Diego",
+      "message": "Como voc\u00eas est\u00e3o?",
+      "timestamp": 1762748301298
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Ana",
+      "message": "Essa conversa est\u00e1 animada!",
+      "timestamp": 1762748301703
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Felipe",
+      "message": "Haha, muito bom!",
+      "timestamp": 1762748301926
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-169",
+      "message": "Ol\u00e1 de client-169!",
+      "timestamp": 1762748303140
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-543",
+      "message": "Ol\u00e1 de client-543!",
+      "timestamp": 1762748303572
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Bruno",
+      "message": "Haha, muito bom!",
+      "timestamp": 1762748305219
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Felipe",
+      "message": "O servidor est\u00e1 rodando liso!",
+      "timestamp": 1762748305551
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-169",
+      "message": "Ol\u00e1 de client-169!",
+      "timestamp": 1762748306145
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Carla",
+      "message": "O servidor est\u00e1 rodando liso!",
+      "timestamp": 1762748306305
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Diego",
+      "message": "O servidor est\u00e1 rodando liso!",
+      "timestamp": 1762748306318
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-543",
+      "message": "Ol\u00e1 de client-543!",
+      "timestamp": 1762748306577
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Diego",
+      "message": "Oi, pessoal!",
+      "timestamp": 1762748306823
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Ana",
+      "message": "Algu\u00e9m viu as novidades de hoje?",
+      "timestamp": 1762748306855
+    },
+    {
+      "type": "direct",
+      "src": "Felipe",
+      "dst": "Bruno",
+      "message": "Acho que o Diego vai gostar disso!",
+      "timestamp": 1762748308291
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Diego",
+      "message": "Estou testando o sistema \ud83d\ude04",
+      "timestamp": 1762748308448
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-169",
+      "message": "Ol\u00e1 de client-169!",
+      "timestamp": 1762748309152
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-543",
+      "message": "Ol\u00e1 de client-543!",
+      "timestamp": 1762748309582
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Carla",
+      "message": "Algu\u00e9m viu as novidades de hoje?",
+      "timestamp": 1762748309652
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Ana",
+      "message": "Essa conversa est\u00e1 animada!",
+      "timestamp": 1762748311390
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Bruno",
+      "message": "Haha, muito bom!",
+      "timestamp": 1762748311790
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-169",
+      "message": "Ol\u00e1 de client-169!",
+      "timestamp": 1762748312157
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-543",
+      "message": "Ol\u00e1 de client-543!",
+      "timestamp": 1762748312587
+    },
+    {
+      "type": "direct",
+      "src": "Diego",
+      "dst": "Carla",
+      "message": "T\u00e1 curtindo o chat?",
+      "timestamp": 1762748313537
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-169",
+      "message": "Ol\u00e1 de client-169!",
+      "timestamp": 1762748315159
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Bruno",
+      "message": "O servidor est\u00e1 rodando liso!",
+      "timestamp": 1762748315581
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-543",
+      "message": "Ol\u00e1 de client-543!",
+      "timestamp": 1762748315592
+    },
+    {
+      "type": "direct",
+      "src": "Ana",
+      "dst": "Felipe",
+      "message": "Queria te contar uma coisa \ud83e\udd2b",
+      "timestamp": 1762748315680
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Carla",
+      "message": "Haha, muito bom!",
+      "timestamp": 1762748315766
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Diego",
+      "message": "Algu\u00e9m viu as novidades de hoje?",
+      "timestamp": 1762748315983
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Felipe",
+      "message": "Algu\u00e9m viu as novidades de hoje?",
+      "timestamp": 1762748316348
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Diego",
+      "message": "Adoro conversar com voc\u00eas!",
+      "timestamp": 1762748317231
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-169",
+      "message": "Ol\u00e1 de client-169!",
+      "timestamp": 1762748318164
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Diego",
+      "message": "Algu\u00e9m viu as novidades de hoje?",
+      "timestamp": 1762748318308
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-543",
+      "message": "Ol\u00e1 de client-543!",
+      "timestamp": 1762748318599
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Bruno",
+      "message": "Oi, pessoal!",
+      "timestamp": 1762748319694
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Felipe",
+      "message": "Como voc\u00eas est\u00e3o?",
+      "timestamp": 1762748320184
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Ana",
+      "message": "Estou testando o sistema \ud83d\ude04",
+      "timestamp": 1762748320271
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-169",
+      "message": "Ol\u00e1 de client-169!",
+      "timestamp": 1762748321168
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Carla",
+      "message": "Haha, muito bom!",
+      "timestamp": 1762748321599
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-543",
+      "message": "Ol\u00e1 de client-543!",
+      "timestamp": 1762748321604
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Diego",
+      "message": "Estou testando o sistema \ud83d\ude04",
+      "timestamp": 1762748322080
+    },
+    {
+      "type": "direct",
+      "src": "Felipe",
+      "dst": "Bruno",
+      "message": "Acho que o Diego vai gostar disso!",
+      "timestamp": 1762748322638
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Ana",
+      "message": "Haha, muito bom!",
+      "timestamp": 1762748323740
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Diego",
+      "message": "Oi, pessoal!",
+      "timestamp": 1762748323940
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Felipe",
+      "message": "Haha, muito bom!",
+      "timestamp": 1762748324155
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-169",
+      "message": "Ol\u00e1 de client-169!",
+      "timestamp": 1762748324173
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Bruno",
+      "message": "Algu\u00e9m viu as novidades de hoje?",
+      "timestamp": 1762748324345
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-543",
+      "message": "Ol\u00e1 de client-543!",
+      "timestamp": 1762748324608
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Carla",
+      "message": "Adoro conversar com voc\u00eas!",
+      "timestamp": 1762748326618
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-169",
+      "message": "Ol\u00e1 de client-169!",
+      "timestamp": 1762748327177
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-543",
+      "message": "Ol\u00e1 de client-543!",
+      "timestamp": 1762748327612
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Ana",
+      "message": "Essa conversa est\u00e1 animada!",
+      "timestamp": 1762748327702
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Diego",
+      "message": "O servidor est\u00e1 rodando liso!",
+      "timestamp": 1762748328102
+    },
+    {
+      "type": "direct",
+      "src": "Felipe",
+      "dst": "Bruno",
+      "message": "T\u00e1 curtindo o chat?",
+      "timestamp": 1762748328688
+    },
+    {
+      "type": "direct",
+      "src": "Felipe",
+      "dst": "Carla",
+      "message": "Queria te contar uma coisa \ud83e\udd2b",
+      "timestamp": 1762748329623
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-169",
+      "message": "Ol\u00e1 de client-169!",
+      "timestamp": 1762748330185
+    },
+    {
+      "type": "direct",
+      "src": "Carla",
+      "dst": "Diego",
+      "message": "Queria te contar uma coisa \ud83e\udd2b",
+      "timestamp": 1762748330220
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-543",
+      "message": "Ol\u00e1 de client-543!",
+      "timestamp": 1762748330616
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Diego",
+      "message": "Oi, pessoal!",
+      "timestamp": 1762748331301
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Bruno",
+      "message": "Como voc\u00eas est\u00e3o?",
+      "timestamp": 1762748331738
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-169",
+      "message": "Ol\u00e1 de client-169!",
+      "timestamp": 1762748333189
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Ana",
+      "message": "Como voc\u00eas est\u00e3o?",
+      "timestamp": 1762748333217
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-543",
+      "message": "Ol\u00e1 de client-543!",
+      "timestamp": 1762748333624
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Diego",
+      "message": "Haha, muito bom!",
+      "timestamp": 1762748334218
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Carla",
+      "message": "Essa conversa est\u00e1 animada!",
+      "timestamp": 1762748334967
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Diego",
+      "message": "Oi, pessoal!",
+      "timestamp": 1762748335255
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Felipe",
+      "message": "Algu\u00e9m viu as novidades de hoje?",
+      "timestamp": 1762748335750
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-169",
+      "message": "Ol\u00e1 de client-169!",
+      "timestamp": 1762748336195
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Bruno",
+      "message": "Essa conversa est\u00e1 animada!",
+      "timestamp": 1762748336591
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-543",
+      "message": "Ol\u00e1 de client-543!",
+      "timestamp": 1762748336628
+    },
+    {
+      "type": "direct",
+      "src": "Diego",
+      "dst": "Felipe",
+      "message": "Ei, tudo bem?",
+      "timestamp": 1762748337012
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Felipe",
+      "message": "Haha, muito bom!",
+      "timestamp": 1762748337529
+    },
+    {
+      "type": "direct",
+      "src": "Ana",
+      "dst": "Felipe",
+      "message": "Depois te chamo pra conversar melhor.",
+      "timestamp": 1762748337679
+    },
+    {
+      "type": "direct",
+      "src": "Diego",
+      "dst": "Felipe",
+      "message": "Depois te chamo pra conversar melhor.",
+      "timestamp": 1762748338110
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-169",
+      "message": "Ol\u00e1 de client-169!",
+      "timestamp": 1762748339201
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-543",
+      "message": "Ol\u00e1 de client-543!",
+      "timestamp": 1762748339633
+    },
+    {
+      "type": "direct",
+      "src": "Felipe",
+      "dst": "Diego",
+      "message": "Voc\u00ea viu o que o pessoal falou?",
+      "timestamp": 1762748340172
+    },
+    {
+      "type": "direct",
+      "src": "Carla",
+      "dst": "Felipe",
+      "message": "Estou mandando s\u00f3 pra voc\u00ea \ud83d\ude09",
+      "timestamp": 1762748340255
+    },
+    {
+      "type": "direct",
+      "src": "Felipe",
+      "dst": "Bruno",
+      "message": "T\u00e1 curtindo o chat?",
+      "timestamp": 1762748341122
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Diego",
+      "message": "Adoro conversar com voc\u00eas!",
+      "timestamp": 1762748341148
+    },
+    {
+      "type": "direct",
+      "src": "Diego",
+      "dst": "Ana",
+      "message": "Estou mandando s\u00f3 pra voc\u00ea \ud83d\ude09",
+      "timestamp": 1762748341881
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Diego",
+      "message": "Estou testando o sistema \ud83d\ude04",
+      "timestamp": 1762748342101
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-169",
+      "message": "Ol\u00e1 de client-169!",
+      "timestamp": 1762748342207
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Bruno",
+      "message": "Haha, muito bom!",
+      "timestamp": 1762748342258
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-543",
+      "message": "Ol\u00e1 de client-543!",
+      "timestamp": 1762748342640
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Ana",
+      "message": "Estou testando o sistema \ud83d\ude04",
+      "timestamp": 1762748343234
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Felipe",
+      "message": "Algu\u00e9m viu as novidades de hoje?",
+      "timestamp": 1762748344006
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-169",
+      "message": "Ol\u00e1 de client-169!",
+      "timestamp": 1762748345217
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Carla",
+      "message": "Oi, pessoal!",
+      "timestamp": 1762748345270
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-543",
+      "message": "Ol\u00e1 de client-543!",
+      "timestamp": 1762748345645
+    },
+    {
+      "type": "direct",
+      "src": "Diego",
+      "dst": "Carla",
+      "message": "Estou mandando s\u00f3 pra voc\u00ea \ud83d\ude09",
+      "timestamp": 1762748345868
+    },
+    {
+      "type": "direct",
+      "src": "Felipe",
+      "dst": "Ana",
+      "message": "Ei, tudo bem?",
+      "timestamp": 1762748346524
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Diego",
+      "message": "Estou testando o sistema \ud83d\ude04",
+      "timestamp": 1762748347774
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Diego",
+      "message": "Essa conversa est\u00e1 animada!",
+      "timestamp": 1762748348138
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-169",
+      "message": "Ol\u00e1 de client-169!",
+      "timestamp": 1762748348223
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Bruno",
+      "message": "Estou testando o sistema \ud83d\ude04",
+      "timestamp": 1762748348263
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-543",
+      "message": "Ol\u00e1 de client-543!",
+      "timestamp": 1762748348652
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Ana",
+      "message": "Haha, muito bom!",
+      "timestamp": 1762748349276
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Felipe",
+      "message": "Haha, muito bom!",
+      "timestamp": 1762748349995
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Diego",
+      "message": "O servidor est\u00e1 rodando liso!",
+      "timestamp": 1762748350946
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-169",
+      "message": "Ol\u00e1 de client-169!",
+      "timestamp": 1762748351230
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-543",
+      "message": "Ol\u00e1 de client-543!",
+      "timestamp": 1762748351656
+    },
+    {
+      "type": "direct",
+      "src": "Carla",
+      "dst": "Diego",
+      "message": "T\u00e1 curtindo o chat?",
+      "timestamp": 1762748352049
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Diego",
+      "message": "Como voc\u00eas est\u00e3o?",
+      "timestamp": 1762748352132
+    },
+    {
+      "type": "direct",
+      "src": "Ana",
+      "dst": "Felipe",
+      "message": "Depois te chamo pra conversar melhor.",
+      "timestamp": 1762748352298
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Felipe",
+      "message": "Adoro conversar com voc\u00eas!",
+      "timestamp": 1762748352333
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Diego",
+      "message": "Haha, muito bom!",
+      "timestamp": 1762748352500
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Bruno",
+      "message": "Algu\u00e9m viu as novidades de hoje?",
+      "timestamp": 1762748352582
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-169",
+      "message": "Ol\u00e1 de client-169!",
+      "timestamp": 1762748354235
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-543",
+      "message": "Ol\u00e1 de client-543!",
+      "timestamp": 1762748354661
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Felipe",
+      "message": "Estou testando o sistema \ud83d\ude04",
+      "timestamp": 1762748355568
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Felipe",
+      "message": "Essa conversa est\u00e1 animada!",
+      "timestamp": 1762748355863
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Bruno",
+      "message": "Essa conversa est\u00e1 animada!",
+      "timestamp": 1762748356252
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Diego",
+      "message": "O servidor est\u00e1 rodando liso!",
+      "timestamp": 1762748356513
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-169",
+      "message": "Ol\u00e1 de client-169!",
+      "timestamp": 1762748357241
+    },
+    {
+      "type": "direct",
+      "src": "Diego",
+      "dst": "Felipe",
+      "message": "T\u00e1 curtindo o chat?",
+      "timestamp": 1762748357466
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-543",
+      "message": "Ol\u00e1 de client-543!",
+      "timestamp": 1762748357665
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Carla",
+      "message": "Adoro conversar com voc\u00eas!",
+      "timestamp": 1762748358258
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Felipe",
+      "message": "Oi, pessoal!",
+      "timestamp": 1762748358647
+    },
+    {
+      "type": "direct",
+      "src": "Ana",
+      "dst": "Carla",
+      "message": "Estou mandando s\u00f3 pra voc\u00ea \ud83d\ude09",
+      "timestamp": 1762748359258
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Felipe",
+      "message": "Oi, pessoal!",
+      "timestamp": 1762748359373
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Diego",
+      "message": "O servidor est\u00e1 rodando liso!",
+      "timestamp": 1762748359931
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-169",
+      "message": "Ol\u00e1 de client-169!",
+      "timestamp": 1762748360248
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-543",
+      "message": "Ol\u00e1 de client-543!",
+      "timestamp": 1762748360670
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Diego",
+      "message": "Adoro conversar com voc\u00eas!",
+      "timestamp": 1762748360803
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Diego",
+      "message": "Oi, pessoal!",
+      "timestamp": 1762748360808
+    },
+    {
+      "type": "direct",
+      "src": "Bruno",
+      "dst": "Felipe",
+      "message": "T\u00e1 curtindo o chat?",
+      "timestamp": 1762748361453
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Carla",
+      "message": "Haha, muito bom!",
+      "timestamp": 1762748362959
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-169",
+      "message": "Ol\u00e1 de client-169!",
+      "timestamp": 1762748363255
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-543",
+      "message": "Ol\u00e1 de client-543!",
+      "timestamp": 1762748363675
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Diego",
+      "message": "O servidor est\u00e1 rodando liso!",
+      "timestamp": 1762748364513
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Ana",
+      "message": "O servidor est\u00e1 rodando liso!",
+      "timestamp": 1762748364519
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Felipe",
+      "message": "Estou testando o sistema \ud83d\ude04",
+      "timestamp": 1762748364888
+    },
+    {
+      "type": "direct",
+      "src": "Felipe",
+      "dst": "Carla",
+      "message": "Queria te contar uma coisa \ud83e\udd2b",
+      "timestamp": 1762748365444
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-169",
+      "message": "Ol\u00e1 de client-169!",
+      "timestamp": 1762748366264
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Bruno",
+      "message": "O servidor est\u00e1 rodando liso!",
+      "timestamp": 1762748366419
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-543",
+      "message": "Ol\u00e1 de client-543!",
+      "timestamp": 1762748366681
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Diego",
+      "message": "Algu\u00e9m viu as novidades de hoje?",
+      "timestamp": 1762748367144
+    },
+    {
+      "type": "direct",
+      "src": "Diego",
+      "dst": "Carla",
+      "message": "Voc\u00ea viu o que o pessoal falou?",
+      "timestamp": 1762748367296
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Ana",
+      "message": "Algu\u00e9m viu as novidades de hoje?",
+      "timestamp": 1762748368647
+    },
+    {
+      "type": "direct",
+      "src": "Carla",
+      "dst": "Ana",
+      "message": "T\u00e1 curtindo o chat?",
+      "timestamp": 1762748368988
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-169",
+      "message": "Ol\u00e1 de client-169!",
+      "timestamp": 1762748369273
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-543",
+      "message": "Ol\u00e1 de client-543!",
+      "timestamp": 1762748369688
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Diego",
+      "message": "Algu\u00e9m viu as novidades de hoje?",
+      "timestamp": 1762748369734
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Felipe",
+      "message": "Adoro conversar com voc\u00eas!",
+      "timestamp": 1762748372234
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-169",
+      "message": "Ol\u00e1 de client-169!",
+      "timestamp": 1762748372282
+    },
+    {
+      "type": "direct",
+      "src": "Diego",
+      "dst": "Felipe",
+      "message": "Queria te contar uma coisa \ud83e\udd2b",
+      "timestamp": 1762748372499
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-543",
+      "message": "Ol\u00e1 de client-543!",
+      "timestamp": 1762748372694
+    },
+    {
+      "type": "direct",
+      "src": "Bruno",
+      "dst": "Felipe",
+      "message": "Acho que o Diego vai gostar disso!",
+      "timestamp": 1762748372729
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Ana",
+      "message": "Algu\u00e9m viu as novidades de hoje?",
+      "timestamp": 1762748373130
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Diego",
+      "message": "Estou testando o sistema \ud83d\ude04",
+      "timestamp": 1762748373594
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-169",
+      "message": "Ol\u00e1 de client-169!",
+      "timestamp": 1762748375290
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Felipe",
+      "message": "Algu\u00e9m viu as novidades de hoje?",
+      "timestamp": 1762748375551
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "client-543",
+      "message": "Ol\u00e1 de client-543!",
+      "timestamp": 1762748375698
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Diego",
+      "message": "Estou testando o sistema \ud83d\ude04",
+      "timestamp": 1762748376137
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Carla",
+      "message": "Oi, pessoal!",
+      "timestamp": 1762748376531
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Ana",
+      "message": "Oi, pessoal!",
+      "timestamp": 1762748377244
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Diego",
+      "message": "Essa conversa est\u00e1 animada!",
+      "timestamp": 1762748378809
+    },
+    {
+      "type": "direct",
+      "src": "Felipe",
+      "dst": "Bruno",
+      "message": "Acho que o Diego vai gostar disso!",
+      "timestamp": 1762748379162
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Bruno",
+      "message": "Estou testando o sistema \ud83d\ude04",
+      "timestamp": 1762748379311
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Diego",
+      "message": "Essa conversa est\u00e1 animada!",
+      "timestamp": 1762748380177
+    },
+    {
+      "type": "direct",
+      "src": "Felipe",
+      "dst": "Carla",
+      "message": "Ei, tudo bem?",
+      "timestamp": 1762748381208
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Diego",
+      "message": "Oi, pessoal!",
+      "timestamp": 1762748382306
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Felipe",
+      "message": "Adoro conversar com voc\u00eas!",
+      "timestamp": 1762748383413
+    },
+    {
+      "type": "direct",
+      "src": "Ana",
+      "dst": "Diego",
+      "message": "Queria te contar uma coisa \ud83e\udd2b",
+      "timestamp": 1762748383536
+    },
+    {
+      "type": "direct",
+      "src": "Carla",
+      "dst": "Ana",
+      "message": "T\u00e1 curtindo o chat?",
+      "timestamp": 1762748383631
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Diego",
+      "message": "O servidor est\u00e1 rodando liso!",
+      "timestamp": 1762748383831
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Diego",
+      "message": "Como voc\u00eas est\u00e3o?",
+      "timestamp": 1762748384831
+    },
+    {
+      "type": "direct",
+      "src": "Ana",
+      "dst": "Carla",
+      "message": "Ei, tudo bem?",
+      "timestamp": 1762748387135
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Bruno",
+      "message": "Adoro conversar com voc\u00eas!",
+      "timestamp": 1762748387270
+    },
+    {
+      "type": "channel",
+      "channel": "geral",
+      "user": "Carla",
+      "message": "Oi, pessoal!",
+      "timestamp": 1762748387335
+    }
+  ]
+}

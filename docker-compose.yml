@@ -12,7 +12,7 @@ services:
     build: ./part2-server
     container_name: server
     volumes:
-      - ./data:/app/data
+      - ./part2-server/data:/app/data
     depends_on:
       - proxy
     environment:
@@ -33,4 +33,4 @@ services:
       - server
       - proxy
     deploy:
-      replicas: 2
+      replicas: 8

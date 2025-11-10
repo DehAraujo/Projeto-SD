@@ -3,7 +3,9 @@ import json
 import os
 import time
 
-DATA_FILE = "app/data.json"
+# Caminho correto para o arquivo persistente
+DATA_FILE = "data/data.json"
+
 
 def load_data():
     if not os.path.exists(DATA_FILE):
@@ -11,9 +13,13 @@ def load_data():
     with open(DATA_FILE, "r") as f:
         return json.load(f)
 
+
 def save_data(data):
+    # Garante que o diretório exista
+    os.makedirs(os.path.dirname(DATA_FILE), exist_ok=True)
     with open(DATA_FILE, "w") as f:
         json.dump(data, f, indent=2)
+
 
 def main():
     ctx = zmq.Context()
@@ -81,6 +87,7 @@ def main():
 
         else:
             rep.send_json({"service": "erro", "data": {"message": f"Serviço desconhecido: {service}", "timestamp": now}})
+
 
 if __name__ == "__main__":
     main()
