@@ -1,67 +1,90 @@
-package main
+import zmq
+import json
+import os
+import time
 
-import (
-    "encoding/json"
-    "fmt"
-    "math/rand"
-    "time"
+DATA_FILE = "data.json"
 
-    zmq "github.com/pebbe/zmq4"
-)
+def load_data():
+    if not os.path.exists(DATA_FILE):
+        return {"users": [], "channels": [], "messages": []}
+    with open(DATA_FILE, "r") as f:
+        return json.load(f)
 
-type Message struct {
-    Service string                 `json:"service"`
-    Data    map[string]interface{} `json:"data"`
-}
+def save_data(data):
+    with open(DATA_FILE, "w") as f:
+        json.dump(data, f, indent=2)
 
-func main() {
-    fmt.Println("💬 Cliente Go iniciado")
+def main():
+    context = zmq.Context()
 
-    // Socket REQ para enviar comandos ao servidor
-    req, _ := zmq.NewSocket(zmq.REQ)
-    defer req.Close()
-    req.Connect("tcp://server:5555")
+    # REQ/REP para comandos
+    rep_socket = context.socket(zmq.REP)
+    rep_socket.bind("tcp://*:5555")
 
-    // Socket SUB para receber mensagens
-    sub, _ := zmq.NewSocket(zmq.SUB)
-    defer sub.Close()
-    sub.Connect("tcp://server:5556")
+    # PUB para mensagens
+    pub_socket = context.socket(zmq.PUB)
+    pub_socket.connect("tcp://proxy:5557")  # publica no proxy
 
-    user := fmt.Sprintf("client-%d", rand.Intn(1000))
+    data = load_data()
+    print("🧠 Servidor ativo em tcp://*:5555 (REQ/REP) e tcp://proxy:5557 (PUB)")
 
-    // Subscreve no canal "geral"
-    sub.SetSubscribe("geral")
+    while True:
+        msg = rep_socket.recv_json()
+        service = msg.get("service")
+        payload = msg.get("data", {})
+        now = time.time()
 
-    fmt.Println("✅ Subscrito no canal 'geral' como", user)
+        if service == "login":
+            user = payload.get("user")
+            if user not in data["users"]:
+                data["users"].append(user)
+                save_data(data)
+            rep_socket.send_json({"service": "login", "data": {"status": "sucesso", "timestamp": now}})
 
-    // LOOP de publicação
-    go func() {
-        for {
-            msg := Message{
-                Service: "publish",
-                Data: map[string]interface{}{
-                    "user":      user,
-                    "channel":   "geral",
-                    "message":   fmt.Sprintf("Olá do %s!", user),
-                    "timestamp": time.Now().UnixMilli(),
-                },
-            }
+        elif service == "users":
+            rep_socket.send_json({"service": "users", "data": {"users": data["users"], "timestamp": now}})
 
-            bytes, _ := json.Marshal(msg)
-            req.Send(string(bytes), 0)
+        elif service == "channel":
+            channel = payload.get("channel")
+            if channel not in data["channels"]:
+                data["channels"].append(channel)
+                save_data(data)
+                rep_socket.send_json({"service": "channel", "data": {"status": "sucesso", "timestamp": now}})
+            else:
+                rep_socket.send_json({"service": "channel", "data": {"status": "erro", "message": "Canal já existe", "timestamp": now}})
 
-            resp, _ := req.Recv(0)
-            fmt.Println("📩 Resposta servidor:", resp)
+        elif service == "channels":
+            rep_socket.send_json({"service": "channels", "data": {"channels": data["channels"], "timestamp": now}})
 
-            time.Sleep(3 * time.Second)
-        }
-    }()
+        elif service == "publish":
+            user = payload.get("user")
+            channel = payload.get("channel")
+            message = payload.get("message")
 
-    // LOOP para receber mensagens
-    for {
-        if sub.Poll(time.Second*1, zmq.POLLIN) > 0 {
-            msg, _ := sub.Recv(0)
-            fmt.Println("📥 Recebido via SUB:", msg)
-        }
-    }
-}
+            if channel not in data["channels"]:
+                rep_socket.send_json({"service": "publish", "data": {"status": "erro", "message": "Canal inexistente", "timestamp": now}})
+            else:
+                pub_socket.send_string(f"{channel} {user}: {message}")
+                data["messages"].append({"type": "channel", "channel": channel, "user": user, "message": message, "timestamp": now})
+                save_data(data)
+                rep_socket.send_json({"service": "publish", "data": {"status": "OK", "timestamp": now}})
+
+        elif service == "message":
+            src = payload.get("src")
+            dst = payload.get("dst")
+            message = payload.get("message")
+
+            if dst not in data["users"]:
+                rep_socket.send_json({"service": "message", "data": {"status": "erro", "message": "Usuário inexistente", "timestamp": now}})
+            else:
+                pub_socket.send_string(f"{dst} {src}: {message}")
+                data["messages"].append({"type": "direct", "src": src, "dst": dst, "message": message, "timestamp": now})
+                save_data(data)
+                rep_socket.send_json({"service": "message", "data": {"status": "OK", "timestamp": now}})
+
+        else:
+            rep_socket.send_json({"service": "erro", "data": {"message": f"Serviço desconhecido: {service}", "timestamp": now}})
+
+if __name__ == "__main__":
+    main()
