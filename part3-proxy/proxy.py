@@ -5,10 +5,10 @@ ctx = zmq.Context()
 
 # Proxy REQ/REP — liga bots/clientes (REQ) com servidor (REP)
 def reqrep_proxy():
-    frontend = ctx.socket(zmq.ROUTER)   # recebe REQ de bots/clientes
-    backend = ctx.socket(zmq.DEALER)    # envia para o servidor
-    frontend.bind("tcp://*:5555")
-    backend.bind("tcp://*:5556")
+    frontend = ctx.socket(zmq.ROUTER)
+    backend = ctx.socket(zmq.DEALER)
+    frontend.bind("tcp://*:5555")  # clientes/bots enviam
+    backend.bind("tcp://*:5556")   # servidor recebe
     print("🔁 Proxy REQ/REP rodando (5555 ↔ 5556)")
     zmq.proxy(frontend, backend)
 
@@ -16,8 +16,8 @@ def reqrep_proxy():
 def pubsub_proxy():
     xsub = ctx.socket(zmq.XSUB)
     xpub = ctx.socket(zmq.XPUB)
-    xsub.bind("tcp://*:5557")  # servidor publica aqui
-    xpub.bind("tcp://*:5558")  # bots/monitores se inscrevem aqui
+    xsub.bind("tcp://*:5557")  # servidor publica
+    xpub.bind("tcp://*:5558")  # clientes/bots/monitores escutam
     print("📡 Proxy PUB/SUB rodando (5557 ↔ 5558)")
     zmq.proxy(xsub, xpub)
 

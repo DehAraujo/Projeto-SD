@@ -1,34 +1,58 @@
-version: "3.8"
+version: '3.8'
 
 services:
-  proxy:
-    build: ./part2-proxy
-    container_name: proxy
-    ports:
-      - "5557:5557"
-      - "5558:5558"
-
   server:
     build: ./part3-server
-    container_name: server
-    volumes:
-      - ./data:/data
     depends_on:
       - proxy
-    environment:
-      - PUB_ADDRESS=tcp://proxy:5557
-      - SUB_ADDRESS=tcp://proxy:5558
+    # Volumes e Environment para persistência/conexão (ADICIONE SE FALTAR)
+    # environment:
+    #   - PUB_ADDRESS=tcp://proxy:5557 
+    #   - SUB_ADDRESS=tcp://proxy:5558
+    # volumes:
+    #   - ./data:/data 
+    networks:
+      - appnet
 
   client:
     build: ./part3-client
-    container_name: client
     depends_on:
-      - server
       - proxy
+      - server # Depende do servidor para Login
+    # 💡 REPLICAS: 2 Clientes em loop
+    deploy:
+      replicas: 2 
+    networks:
+      - appnet
 
   bot:
     build: ./part3-bot
-    container_name: bot
     depends_on:
-      - server
       - proxy
+      - server # Depende do servidor para Login
+    # 💡 REPLICAS: 8 Bots em loop
+    deploy:
+      replicas: 8
+    networks:
+      - appnet
+
+  proxy:
+    build: ./part2-proxy
+    ports:
+      # Portas de PUB/SUB (5557:XPUB, 5558:XSUB)
+      - "5557:5557" # XSUB (Entrada de Publicadores)
+      - "5558:5558" # XPUB (Saída de Assinantes)
+    networks:
+      - appnet
+
+  monitor:
+    build: ./part3-monitor
+    depends_on:
+      - proxy
+    networks:
+      - appnet
+    command: ["python", "monitor.py"]
+
+networks:
+  appnet:
+    driver: bridge

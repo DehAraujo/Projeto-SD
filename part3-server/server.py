@@ -1,76 +1,72 @@
 import zmq
 import msgpack
-import os
-import time
 
-DATA_FILE = "/data/data.dat"
+ctx = zmq.Context()
 
-def load_data():
-    if not os.path.exists(DATA_FILE):
-        return {"users": [], "channels": ["geral"], "messages": []}
-    try:
-        with open(DATA_FILE, "rb") as f:
-            return msgpack.unpackb(f.read(), raw=False)
-    except Exception as e:
-        print(f"Erro ao carregar dados: {e}")
-        return {"users": [], "channels": ["geral"], "messages": []}
+# REQ/REP — para receber requisições dos clientes e bots
+rep = ctx.socket(zmq.REP)
+rep.bind("tcp://*:5556")
 
-def save_data(data):
-    os.makedirs(os.path.dirname(DATA_FILE), exist_ok=True)
-    with open(DATA_FILE, "wb") as f:
-        f.write(msgpack.packb(data, use_bin_type=True))
+# PUB/SUB — para enviar mensagens públicas e privadas
+pub = ctx.socket(zmq.PUB)
+pub.bind("tcp://*:5557")
 
-def main():
-    ctx = zmq.Context()
+print("🧠 Servidor pronto — trocando mensagens com MessagePack...")
 
-    rep = ctx.socket(zmq.REP)
-    rep.bind("tcp://*:5555")
+while True:
+    packed = rep.recv()
+    msg = msgpack.unpackb(packed, raw=False)
+    service = msg.get("service")
+    data = msg.get("data", {})
+    user = data.get("user")
 
-    pub = ctx.socket(zmq.PUB)
-    pub.connect("tcp://proxy:5557")
+    # --- PUBLICAÇÃO EM CANAL ---
+    if service == "publish":
+        channel = data["channel"]
+        message = data["message"]
+        payload = {
+            "service": "publish",
+            "data": {
+                "user": user,
+                "channel": channel,
+                "message": message,
+                "timestamp": data["timestamp"],
+            },
+        }
 
-    print("🧠 Servidor MessagePack ativo em tcp://*:5555 e tcp://proxy:5557")
+        # Envia para todos os inscritos no canal
+        pub.send_multipart([channel.encode(), msgpack.packb(payload)])
+        rep.send(msgpack.packb({
+            "service": "publish",
+            "data": {"status": "OK", "timestamp": data["timestamp"]},
+        }))
 
-    data = load_data()
+    # --- MENSAGEM PRIVADA ---
+    elif service == "message":
+        src = data["src"]
+        dst = data["dst"]
+        message = data["message"]
 
-    while True:
-        msg_bytes = rep.recv()
-        msg = msgpack.unpackb(msg_bytes, raw=False)
+        payload = {
+            "service": "message",
+            "data": {
+                "src": src,
+                "dst": dst,
+                "message": message,
+                "timestamp": data["timestamp"],
+            },
+        }
 
-        service = msg.get("service")
-        payload = msg.get("data", {})
-        now = int(time.time() * 1000)
+        # Publica no tópico com o nome do destinatário
+        pub.send_multipart([dst.encode(), msgpack.packb(payload)])
+        rep.send(msgpack.packb({
+            "service": "message",
+            "data": {"status": "OK", "timestamp": data["timestamp"]},
+        }))
 
-        response = {}
-
-        if service == "login":
-            user = payload.get("user")
-            if user and user not in data["users"]:
-                data["users"].append(user)
-                save_data(data)
-            response = {"status": "OK", "timestamp": now}
-
-        elif service == "publish":
-            user = payload.get("user")
-            channel = payload.get("channel", "geral")
-            message = payload.get("message")
-
-            if channel not in data["channels"]:
-                response = {"status": "erro", "message": f"Canal '{channel}' não existe"}
-            else:
-                pub_data = {"user": user, "message": message, "timestamp": now}
-                pub.send_multipart([
-                    channel.encode(),
-                    msgpack.packb(pub_data, use_bin_type=True)
-                ])
-                data["messages"].append(pub_data)
-                save_data(data)
-                response = {"status": "OK", "timestamp": now}
-
-        else:
-            response = {"status": "erro", "message": f"Serviço desconhecido: {service}"}
-
-        rep.send(msgpack.packb({"service": service, "data": response}, use_bin_type=True))
-
-if __name__ == "__main__":
-    main()
+    # --- SERVIÇO DESCONHECIDO ---
+    else:
+        rep.send(msgpack.packb({
+            "service": "erro",
+            "data": {"message": "Serviço inválido"},
+        }))
