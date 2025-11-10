@@ -1,53 +1,42 @@
-version: '3.8'
-
+version: "3.8"
 services:
-  server:
-    build: ./part3-server
-    depends_on:
-      - proxy
-    volumes:                              # 🔥 deve ficar DENTRO do serviço
-      - ./part3-server/data:/app/data     # persistência dos dados
-    environment:
-      - PUB_ADDRESS=tcp://proxy:5557
-      - SUB_ADDRESS=tcp://proxy:5558
-    networks:
-      - appnet
-
-  client:
-    build: ./part3-client
-    depends_on:
-      - proxy
-      - server
-    deploy:
-      replicas: 2
-    networks:
-      - appnet
-
-  bot:
-    build: ./part3-bot
-    depends_on:
-      - proxy
-      - server
-    deploy:
-      replicas: 10
-    networks:
-      - appnet
+  ref:
+    build: ./part4-ref
+    networks: [appnet]
 
   proxy:
-    build: ./part3-proxy
+    build: ./part4-proxy
     ports:
-      - "5557:5557"   # XSUB (Entrada de Publicadores)
-      - "5558:5558"   # XPUB (Saída de Assinantes)
-    networks:
-      - appnet
+      - "5557:5557"
+      - "5558:5558"
+    networks: [appnet]
 
-  monitor:
-    build: ./part3-monitor
-    depends_on:
-      - proxy
-    networks:
-      - appnet
-    command: ["python", "monitor.py"]
+  broker:
+    build: ./part4-broker
+    networks: [appnet]
+
+  server:
+    build: ./part4-server
+    depends_on: [proxy, ref]
+    environment:
+      - SERVER_NAME=server
+    deploy:
+      replicas: 3
+    volumes:
+      - ./part4-server/data:/app/data
+    networks: [appnet]
+
+  bot:
+    build: ./part4-bot
+    depends_on: [proxy, broker]
+    deploy:
+      replicas: 2
+    networks: [appnet]
+
+  client:
+    build: ./part4-client
+    depends_on: [proxy, broker]
+    networks: [appnet]
 
 networks:
   appnet:
